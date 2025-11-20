@@ -1,0 +1,5 @@
+package com.mayuri.studentcrud.model;
+
+public class Student {
+
+}

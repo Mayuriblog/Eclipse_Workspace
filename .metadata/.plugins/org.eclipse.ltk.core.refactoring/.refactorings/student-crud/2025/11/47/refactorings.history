@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;student-crud/src/main/resources/templates/student&apos; to &apos;students&apos;" description="Rename resource &apos;student&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/templates/student" name="students" stamp="1763617520449" updateReferences="true"/>
+</session>

@@ -1,0 +1,39 @@
+package com.college;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+public class EmployeeDAO {
+	Connection con;
+	Statement stmt;
+	PreparedStatement ps1,ps2;
+	ResultSet rs;
+	private static final String url="jdbc:mysql://localhost:3306/college_db";
+	private static final String username="root";
+	private static final String password="root";
+	public EmployeeDAO()
+	{
+		try {
+				if(con==null)
+				{
+				    Class.forName("com.mysql.jdbc.Driver");
+				    con=DriverManager.getConnection(url,username,password);
+				}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public int save(Employee e);
+	public boolean update(Employee e);
+	public boolean delete(int id);
+	public Employee findById(int id);
+	public List<Employee> findAll();
+	
+
+}

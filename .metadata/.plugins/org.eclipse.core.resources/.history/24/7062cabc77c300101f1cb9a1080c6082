@@ -1,0 +1,64 @@
+package com.college;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+public class EmployeeDAO {
+	Connection con;
+	Statement stmt;
+	PreparedStatement ps1,ps2;
+	ResultSet rs;
+	private static final String url="jdbc:mysql://localhost:3306/college_db";
+	private static final String username="root";
+	private static final String password="root";
+	public EmployeeDAO()
+	{
+		try {
+				if(con==null)
+				{
+				    Class.forName("com.mysql.jdbc.Driver");
+				    con=DriverManager.getConnection(url,username,password);
+				    stmt=con.createStatement();
+				    ps1=con.prepareStatement("insert into employee values(?,?,?,?)");
+				    ps2=con.prepareStatement("update employee set name=?,email=?,salary=? where id=?");
+				}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public int save(Employee e)
+	{
+		int id=0;
+		try {
+			//ps1.setInt(1,e.id);
+			ps1.setString(2, e.getName());
+			ps1.setString(3, e.getEmail());
+			ps1.setDouble(4,e.getSalary());
+			if(ps1.executeUpdate()>0)
+			{
+				return ps1.getInt(1);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return id;
+	}
+	public boolean update(Employee e);
+	public boolean delete(int id);
+	public Employee findById(int id);
+	public List<Employee> findAll();
+	
+
+}

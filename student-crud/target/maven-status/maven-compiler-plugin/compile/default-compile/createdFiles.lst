@@ -1,0 +1,6 @@
+com\mayuri\studentcrud\repository\StudentRepository.class
+com\mayuri\studentcrud\StudentCrudApplication.class
+com\mayuri\studentcrud\model\Student.class
+com\mayuri\studentcrud\controller\StudentController.class
+com\mayuri\studentcrud\service\impl\StudentServiceImpl.class
+com\mayuri\studentcrud\service\StudentService.class

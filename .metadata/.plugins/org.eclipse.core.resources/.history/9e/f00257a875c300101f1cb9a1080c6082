@@ -1,0 +1,12 @@
+package com.college;
+
+public class EmployeeDAO {
+	
+	public int save(Employee e);
+	public boolean update(Employee e);
+	public boolean delete(int id);
+	public Employee findById(int id);
+	public List<Employee> findAll();
+	
+
+}

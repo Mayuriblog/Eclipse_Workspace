@@ -1,0 +1,7 @@
+package com.college;
+
+public class EmployeeDAO {
+	
+	public int save(Employee e);
+
+}

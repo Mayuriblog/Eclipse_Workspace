@@ -1,0 +1,77 @@
+package com.college;
+
+import java.util.Scanner;
+
+public class EmployeeApp {
+    static void menu()
+    {
+    	System.out.println("List of Operations \n -----------------------\n 1. Insert \n 2. update \n 3. find by id \n 4. find all \n 5. delete \n 6. exit\n enter your choice \n");
+    	    	
+    }
+	public static void main(String args[])
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		EmployeeDAO edao=new EmployeeDAO();
+		do {
+				menu();
+				int ch=sc.nextInt();
+				switch(ch)
+				{
+				case 1:
+					System.out.println("enter employee values\n");
+					String name=sc.next();
+					String email=sc.next();
+					double salary=sc.nextDouble();
+					Employee e1=new Employee(name,email,salary);
+					int res1=edao.save(e1);
+					if(res1==1)
+					{
+						System.out.println("Record Inserted Successfully");
+					}
+					else
+					{
+						System.out.println("Record not inserted");
+						
+					}
+					break;
+				case 2:
+					System.out.println("enter employee id\n");
+					int id=sc.nextInt();
+					System.out.println("enter new salary\n");
+					double nsalary=sc.nextDouble();
+					Employee e2=new Employee(id,"","",nsalary);
+					boolean res2=edao.update(e2);
+					if(res2==true)
+					{
+						System.out.println("Record updated Successfully");
+					}
+					else
+					{
+						System.out.println("Record not updated");
+						
+					}
+					break;
+				case 3:
+					System.out.println("enter employee id\n");
+					id=sc.nextInt();
+					Employee e=edao.findById(id);
+					System.out.println(e);
+					break;
+				case 4:
+					List<Employee> empList; 
+					empList=edao.findAll();
+					System.out.println(empList);
+					break;
+				case 5: 
+					break;
+				case 6: System.exit(0);
+				default: System.out.println("Invalid choice");
+				}
+				
+		}while(true);
+		
+		
+	}
+	
+}

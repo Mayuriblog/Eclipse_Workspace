@@ -1,0 +1,61 @@
+package com.mayuri.studentcrud.controller;
+
+
+import com.mayuri.studentcrud.model.Student;
+import com.mayuri.studentcrud.service.StudentService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+
+@Controller
+@RequestMapping("/students")
+public class StudentController {
+
+
+private final StudentService service;
+
+
+public StudentController(StudentService service) {
+this.service = service;
+}
+
+
+@GetMapping
+public String listStudents(Model model) {
+model.addAttribute("students", service.findAll());
+return "students/list"; // src/main/resources/templates/students/list.html
+}
+
+
+@GetMapping("/new")
+public String showCreateForm(Model model) {
+model.addAttribute("student", new Student());
+return "students/form";
+}
+
+
+@PostMapping
+public String createStudent(@ModelAttribute Student student) {
+service.save(student);
+return "redirect:/students";
+}
+
+
+@GetMapping("/edit/{id}")
+public String showEditForm(@PathVariable Long id, Model model) {
+var studentOpt = service.findById(id);
+if (studentOpt.isEmpty()) {
+return "redirect:/students";
+}
+model.addAttribute("student", studentOpt.get());
+return "students/form";
+}
+
+
+@PostMapping("/delete/{id}")
+public String deleteStudent(@PathVariable Long id) {
+service.deleteById(id);
+return "redirect:/students";
+}
+}
